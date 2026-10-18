@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3 - Final Setup</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 0; color: #1e293b; background-color: #f8fafc; display: flex; min-height: 100vh; }
+        aside { width: 260px; background: #0f172a; color: white; padding: 25px 20px; box-sizing: border-box; flex-shrink: 0; }
+        aside h2 { font-size: 18px; margin-top: 0; color: #f8fafc; border-bottom: 1px solid #334155; padding-bottom: 12px; }
+        .menu-btn { width: 100%; background: #1e293b; color: white; border: 1px solid #334155; padding: 12px 15px; font-size: 14px; font-weight: bold; border-radius: 6px; cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
+        .dropdown-content { display: none; background: #1e293b; border-radius: 6px; margin-top: 5px; overflow: hidden; }
+        .dropdown-content.show { display: block; }
+        .dropdown-content a { display: block; color: #cbd5e1; padding: 10px 15px; text-decoration: none; font-size: 14px; border-bottom: 1px solid #334155; }
+        .dropdown-content a:hover, .dropdown-content a.active { background: #2563eb; color: white; }
+        main { flex-grow: 1; padding: 40px; box-sizing: border-box; max-width: 900px; }
+        .content-card { background: white; padding: 35px; border-radius: 10px; border: 1px solid #e2e8f0; }
+        .btn-next { display: inline-block; background: #0f172a; color: white; text-decoration: none; padding: 12px 24px; font-weight: bold; border-radius: 6px; margin-top: 20px; }
+        @media (max-width: 768px) { body { flex-direction: column; } aside { width: 100%; } }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <h2>📚 Documentation</h2>
+        <a href="index.html" style="color: #60a5fa; text-decoration: none; font-weight: bold; font-size: 14px;">← Overview Home</a>
+        
+        <button class="menu-btn" onclick="toggleDropdown()">
+            <span>Select Chapter</span>
+            <span id="arrow">▲</span>
+        </button>
+        <div class="dropdown-content show" id="chapterDropdown">
+            <a href="chapter1.html">Chapter 1: Getting Started</a>
+            <a href="chapter2.html">Chapter 2: Core Concepts</a>
+            <a href="chapter3.html" class="active">Chapter 3: Final Setup</a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="content-card">
+            <span style="background: #9333ea; color: white; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px; text-transform: uppercase;">Chapter 3</span>
+            <h1 style="margin-top: 15px; color: #0f172a;">Final Setup & Summary</h1>
+            <p style="color: #64748b; font-size: 16px;">This concludes the multi-page guide.</p>
+            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 25px 0;">
+            <p>Summarize key takeaways, next steps, or support links here.</p>
+            <a href="index.html" class="btn-next">Return to Overview Home →</a>
+        </div>
+    </main>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('chapterDropdown');
+            const arrow = document.getElementById('arrow');
+            dropdown.classList.toggle('show');
+            arrow.textContent = dropdown.classList.contains('show') ? '▲' : '▼';
+        }
+    </script>
+
+</body>
+</html>

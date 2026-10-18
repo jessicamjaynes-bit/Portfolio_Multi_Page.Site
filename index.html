@@ -3,72 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Page Guide - Welcome</title>
+    <title>Professional Portfolio & Showcase</title>
     <style>
-        body { font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 0; color: #1e293b; background-color: #f8fafc; display: flex; min-height: 100vh; }
+        body { font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 0; color: #1e293b; background-color: #ffffff; line-height: 1.6; }
         
-        /* Sidebar Styles */
-        aside { width: 260px; background: #0f172a; color: white; padding: 25px 20px; box-sizing: border-box; flex-shrink: 0; }
-        aside h2 { font-size: 18px; margin-top: 0; color: #f8fafc; border-bottom: 1px solid #334155; padding-bottom: 12px; }
+        /* Navigation Bar */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 40px; background: #ffffff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 18px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #64748b; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+        .nav-links a:hover { color: #2563eb; }
+        .btn-nav { background: #2563eb; color: white !important; padding: 8px 16px; border-radius: 6px; }
+        .btn-nav:hover { background: #1d4ed8 !important; }
+
+        /* Section Layouts */
+        section { padding: 70px 20px; border-bottom: 1px dashed #e2e8f0; position: relative; }
+        .section-tag { position: absolute; top: 15px; left: 20px; background: #2563eb; color: white; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px; text-transform: uppercase; }
+        .container { max-width: 950px; margin: 0 auto; }
+        .section-title { font-size: 28px; color: #0f172a; margin-top: 0; margin-bottom: 8px; font-weight: 800; text-align: center; }
+        .section-subtitle { color: #64748b; text-align: center; margin-bottom: 35px; font-size: 15px; }
+
+        /* Hero Section */
+        .hero { background: #f8fafc; padding: 90px 20px 70px; text-align: center; }
+        .badge { display: inline-block; background: #dbeafe; color: #1e40af; padding: 6px 14px; font-size: 13px; font-weight: 700; border-radius: 20px; margin-bottom: 15px; }
+        .hero h1 { font-size: 40px; color: #0f172a; margin-bottom: 15px; font-weight: 800; line-height: 1.2; }
+        .hero p { font-size: 18px; color: #475569; max-width: 650px; margin: 0 auto 30px auto; }
+        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary { background: #2563eb; color: white; text-decoration: none; padding: 12px 26px; font-size: 15px; font-weight: bold; border-radius: 6px; border: none; cursor: pointer; transition: background 0.2s; display: inline-block; }
+        .btn-primary:hover { background: #1d4ed8; }
+        .btn-secondary { background: #ffffff; color: #0f172a; border: 1px solid #cbd5e1; text-decoration: none; padding: 12px 26px; font-size: 15px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: all 0.2s; display: inline-block; }
+        .btn-secondary:hover { border-color: #0f172a; background: #f8fafc; }
+
+        /* Projects Section */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .project-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
+        .project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.05); }
+        .project-preview { background: #0f172a; height: 160px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 14px; font-weight: 600; border-bottom: 1px solid #e2e8f0; }
+        .project-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-tags { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+        .tag { background: #f1f5f9; color: #475569; font-size: 11px; padding: 3px 8px; font-weight: 600; border-radius: 4px; }
+        .project-body h3 { margin: 0 0 8px 0; color: #0f172a; font-size: 18px; }
+        .project-body p { color: #64748b; font-size: 13px; margin: 0 0 15px 0; flex-grow: 1; }
+        .project-link { color: #2563eb; text-decoration: none; font-weight: bold; font-size: 13px; }
+
+        /* Services Grid */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .skill-card { background: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .skill-card h3 { margin-top: 0; font-size: 16px; color: #0f172a; }
+        .skill-card p { margin: 0; font-size: 13px; color: #64748b; }
+
+        /* NEW CTA BUTTONS & NEWSLETTER SECTION */
+        .cta-section { background: #0f172a; color: white; padding: 60px 20px; text-align: center; }
+        .cta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-top: 30px; text-align: left; }
+        .cta-card { background: #1e293b; border: 1px solid #334155; padding: 25px; border-radius: 10px; }
+        .cta-card h3 { margin-top: 0; color: #f8fafc; font-size: 18px; }
+        .cta-card p { color: #94a3b8; font-size: 13px; margin-bottom: 20px; }
         
-        /* Collapsible / Dropdown Menu */
-        .menu-btn { width: 100%; background: #1e293b; color: white; border: 1px solid #334155; padding: 12px 15px; font-size: 14px; font-weight: bold; border-radius: 6px; cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
-        .menu-btn:hover { background: #334155; }
-        .dropdown-content { display: none; background: #1e293b; border-radius: 6px; margin-top: 5px; overflow: hidden; }
-        .dropdown-content.show { display: block; }
-        .dropdown-content a { display: block; color: #cbd5e1; padding: 10px 15px; text-decoration: none; font-size: 14px; border-bottom: 1px solid #334155; }
-        .dropdown-content a:hover, .dropdown-content a.active { background: #2563eb; color: white; }
+        .newsletter-form { display: flex; gap: 8px; }
+        .newsletter-form input { padding: 10px; border-radius: 6px; border: 1px solid #475569; background: #0f172a; color: white; font-size: 13px; flex-grow: 1; }
+        .btn-subscribe { background: #2563eb; color: white; border: none; padding: 10px 16px; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 13px; }
 
-        /* Main Content Area */
-        main { flex-grow: 1; padding: 40px; box-sizing: border-box; max-width: 900px; }
-        .content-card { background: white; padding: 35px; border-radius: 10px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .btn-next { display: inline-block; background: #2563eb; color: white; text-decoration: none; padding: 12px 24px; font-weight: bold; border-radius: 6px; margin-top: 20px; }
-        .btn-next:hover { background: #1d4ed8; }
+        /* Contact Section */
+        .contact-container { max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; font-size: 13px; margin-bottom: 5px; color: #334155; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
 
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            aside { width: 100%; }
+        /* Footer */
+        footer { background: #f8fafc; padding: 30px 20px; text-align: center; color: #64748b; font-size: 13px; border-top: 1px solid #e2e8f0; }
+
+        @media (max-width: 600px) {
+            nav { padding: 15px 20px; }
+            .hero h1 { font-size: 30px; }
+            .nav-links { gap: 10px; }
+            .newsletter-form { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <!-- SIDE NAVIGATION WITH DROPDOWN -->
-    <aside>
-        <h2>📚 Documentation</h2>
-        <a href="index.html" style="color: #60a5fa; text-decoration: none; font-weight: bold; font-size: 14px;">← Overview Home</a>
-        
-        <button class="menu-btn" onclick="toggleDropdown()">
-            <span>Select Chapter</span>
-            <span id="arrow">▼</span>
-        </button>
-        <div class="dropdown-content show" id="chapterDropdown">
-            <a href="chapter1.html">Chapter 1: Getting Started</a>
-            <a href="chapter2.html">Chapter 2: Core Concepts</a>
-            <a href="chapter3.html">Chapter 3: Final Setup</a>
+    <!-- NAVIGATION BAR -->
+    <nav>
+        <div class="logo">⚡ Designer & Developer</div>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#services">Services</a>
+            <a href="#actions">Resources</a>
+            <a href="#contact" class="btn-nav">Contact</a>
         </div>
-    </aside>
+    </nav>
 
-    <!-- MAIN PAGE CONTENT -->
-    <main>
-        <div class="content-card">
-            <span style="background: #2563eb; color: white; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px; text-transform: uppercase;">Overview</span>
-            <h1 style="margin-top: 15px; color: #0f172a;">Welcome to the Multi-Page Guide</h1>
-            <p style="color: #64748b; font-size: 16px;">Use the dropdown menu on the side panel to navigate between different dedicated pages/chapters of this guide.</p>
-            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 25px 0;">
-            <p>Each chapter lives on its own HTML page for clear organization and modular content management.</p>
-            <a href="chapter1.html" class="btn-next">Start Chapter 1 →</a>
+    <!-- SECTION 1: HERO INTRO -->
+    <section class="hero">
+        <span class="section-tag">Section 1: Hero & Bio</span>
+        <div class="container">
+            <div class="badge">🟢 Available for Select Client Projects</div>
+            <h1>Crafting Clean, High-Converting Web Experiences</h1>
+            <p>Specializing in custom web applications, responsive landing pages, and intuitive user interfaces designed to help small businesses grow.</p>
+            <div class="hero-buttons">
+                <a href="#work" class="btn-primary">View Featured Work ↓</a>
+                <a href="#contact" class="btn-secondary">Get in Touch</a>
+            </div>
         </div>
-    </main>
+    </section>
 
-    <script>
-        function toggleDropdown() {
-            const dropdown = document.getElementById('chapterDropdown');
-            const arrow = document.getElementById('arrow');
-            dropdown.classList.toggle('show');
-            arrow.textContent = dropdown.classList.contains('show') ? '▲' : '▼';
-        }
-    </script>
+    <!-- SECTION 2: FEATURED PROJECTS -->
+    <section id="work">
+        <span class="section-tag">Section 2: Portfolio Work</span>
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">A selection of recent web applications and standalone design solutions.</p>
 
-</body>
-</html>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-preview" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
+                        🖥️ Business Landing Page
+                    </div>
+                    <div class="project-body">
+                        <div class="project-tags"><span class="tag">HTML/CSS</span><span class="tag">Responsive</span></div>
+                        <h3>Business Site Concept</h3>
+                        <p>High-converting business landing layout featuring service cards and call-to-action sections.</p>
+                        <a href="https://jessicamjaynes-bit.github.io/Landing-page-Business-Site-Example-1/" target="_blank" class="project-link">View Live Demo →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-preview" style="background: linear-gradient(135deg, #1d4ed8, #1e40af);">
+                        📅 Online Booking Application
+                    </div>
+                    <div class="project-body">
+                        <div class="project-tags"><span class="tag">Interactive</span><span class="tag">Pop-up Modal</span></div>
+                        <h3>Appointment Booking System</h3>
+                        <p>Interactive service selection and arrival time scheduler integrated with a pop-up modal interface.</p>
+                        <a href="https://jessicamjaynes-bit.github.io/Booking-Page-Example-1/" target="_blank" class="project-link">View Live Demo →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-preview" style="background: linear-gradient(135deg, #15803d, #166534);">
+                        🌱 Non-Profit Platform
+                    </div>
+                    <div class="project-body">
+                        <div class="project-tags"><span class="tag">Non-Profit</span><span class="tag">Donation</span></div>
+                        <h3>Community Hope Alliance</h3>
+                        <p>Organizational hub featuring impact metrics, core program highlights, and donation options.</p>
+                        <a href="https://jessicamjaynes-bit.github.io/NonProfit-Organization-Example-1/" target="_blank" class="project-link">View Live Demo →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: SERVICES & SKILLS -->
+    <section id="services" style="background: #f8fafc;">
+        <span class="section-tag">Section 3: Capabilities</span>
+        <div class="container">
+            <h2 class="section-title">Services & Expertise</h2>
+            <p class="section-subtitle">Tailored technical solutions focused on clean code and design precision.</p>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>💻 Custom Web Development</h3>
+                    <p>Clean, semantic HTML, CSS, and JavaScript designed for speed and effortless navigation.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>📱 Responsive Design</h3>
+                    <p>Mobile-first layouts engineered to render seamlessly across desktop, tablet, and mobile screens.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🎨 UI/UX Branding</h3>
+                    <p>Intuitive user interfaces, color systems, and modern visual branding for digital products.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION 4: CALL TO ACTION BUTTONS & NEWSLETTER -->
+    <section class="cta-section" id="actions">
+        <span class="section-tag" style="background: #2563eb;">Section 4: Key Actions & Connect</span>
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Connect & Download Resources</h2>
+            <p style="color: #94a3b8; text-align: center;">Get in touch directly or grab my latest resume & developer summary.</p>
+
+            <div class="cta-grid">
+                <!-- CTA 1: DOWNLOAD RESUME -->
+                <div class="cta-card">
+                    <h3>📄 Download Resume</h3>
+                    <p>Get a copy of my current technical resume, experience overview, and service pricing guide.</p>
+                    <a href="#" onclick="alert('Resume download initiated!')" class="btn-primary" style="width: 100%; box-sizing: border-box; text-align: center;">Download PDF Resume 📥</a>
+                </div>
+
+                <!-- CTA 2: CONNECT & SOCIALS -->
+                <div class="cta-card">
+                    <h3>🤝 Professional Network</h3>
+                    <p>Connect with me on LinkedIn or review open-source web repositories on GitHub.</p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="#" onclick
